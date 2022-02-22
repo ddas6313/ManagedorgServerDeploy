@@ -79,7 +79,7 @@ jobs:
       - name: Update CloudFlare DNS with Cluster IP
         run: |-
           # purge any existing records for our GCP subdomain.
-          existing_records=( $(curl -X GET "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_DNS_ZONE }}/dns_records?type=CNAME&name=dev.managedorg.io" \
+          existing_records=( $(curl -X GET "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_DNS_ZONE }}/dns_records?type=CNAME&name=devtest.managedorg.io" \
              -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
              -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
              -H "Content-Type: application/json"   | jq -r '.result[].id') )
@@ -96,6 +96,4 @@ jobs:
              -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
              -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
              -H "Content-Type: application/json" \
-             --data '{"type":"CNAME","name":"dev","content":"'${CLUSTER_HOSTNAME}'","ttl":120,"priority":10,"proxied":true}'
-
- 
+             --data '{"type":"CNAME","name":"devtest","content":"'${CLUSTER_HOSTNAME}'","ttl":120,"priority":10,"proxied":true}'
