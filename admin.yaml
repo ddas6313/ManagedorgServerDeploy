@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-deployment
+  labels:
+    app: admin
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin
+      version: v1      
+  template:
+    metadata:
+      labels: # labels to select/identify the deployment
+        app: admin 
+        version: v1         
+    spec:     # pod spec
+      imagePullSecrets:
+      - name: jfrog-secret
+      containers: 
+      - name: admin
+        image: sreyo.jfrog.io/adminstrapi-docker-dev-local/adminstrapi-docker # image we pushed
+        #imagePullPolicy: Never
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 1337
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-service
+  labels:
+    app: admin
+spec:
+  selector:
+    app: admin 
+  ports:
+    - port: 1337
+      targetPort: 1337

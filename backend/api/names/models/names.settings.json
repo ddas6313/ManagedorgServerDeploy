@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "names",
+  "info": {
+    "name": "name",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "middleName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "nickName": {
+      "type": "string"
+    },
+    "user": {
+      "via": "names",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

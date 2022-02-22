@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "campaign_goals",
+  "info": {
+    "name": "Campaign Goal",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "goal_types": {
+      "collection": "goal-type"
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "campaign": {
+      "model": "campaign"
+    }
+  }
+}

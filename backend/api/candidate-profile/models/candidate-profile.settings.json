@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidate_profiles",
+  "info": {
+    "name": "candidate-profile",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "profileName": {
+      "type": "string"
+    },
+    "certificates": {
+      "via": "candidate_profile",
+      "collection": "certificate"
+    },
+    "educations": {
+      "via": "candidate_profile",
+      "collection": "education"
+    },
+    "experiences": {
+      "collection": "experience",
+      "via": "candidate_profile"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "candidate": {
+      "via": "candidate_profiles",
+      "model": "candidates"
+    },
+    "name": {
+      "model": "names"
+    },
+    "email": {
+      "model": "email"
+    },
+    "phone": {
+      "model": "phone"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": true
+    },
+    "skill": {
+      "via": "candidate_profile",
+      "model": "skill"
+    },
+    "sourcing_details": {
+      "via": "candidate_profile",
+      "collection": "sourcing-details"
+    }
+  }
+}

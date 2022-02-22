@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Employee_Test",
+  "info": {
+    "name": "Employee_Test"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "model": "names"
+    },
+    "email": {
+      "model": "email"
+    },
+    "phone": {
+      "model": "phone"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}

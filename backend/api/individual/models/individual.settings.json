@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "individuals",
+  "info": {
+    "name": "individual",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "individuals"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "MEMBER"
+      ]
+    },
+    "dob": {
+      "type": "date"
+    },
+    "relation": {
+      "type": "enumeration",
+      "enum": [
+        "HeadOfHousehold",
+        "Spouse",
+        "Child",
+        "Parent"
+      ]
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female",
+        "transgender",
+        "others"
+      ]
+    },
+    "homeTown": {
+      "type": "string"
+    },
+    "address": {
+      "model": "address"
+    },
+    "email": {
+      "model": "email"
+    },
+    "phone": {
+      "model": "phone"
+    }
+  }
+}

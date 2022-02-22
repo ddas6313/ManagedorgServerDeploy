@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contracts",
+  "info": {
+    "name": "Contract"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "supplier_onboarding": {
+      "model": "supplier-onboarding"
+    },
+    "contract_info": {
+      "model": "contract-info"
+    },
+    "contract_type": {
+      "model": "contract-type"
+    }
+  }
+}

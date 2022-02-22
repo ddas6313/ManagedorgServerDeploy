@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certificate_types",
+  "info": {
+    "name": "certificate-type"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "certificateName": {
+      "type": "string"
+    },
+    "certificateType": {
+      "type": "enumeration",
+      "enum": [
+        "Bachelors",
+        "Masters"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "certificate_authority": {
+      "model": "certificate-authority"
+    }
+  }
+}

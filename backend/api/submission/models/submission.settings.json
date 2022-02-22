@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submissions",
+  "info": {
+    "name": "Submission",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "requirement": {
+      "model": "employment-terms"
+    },
+    "candidate_profile": {
+      "model": "candidate-profile"
+    },
+    "timeStamp": {
+      "type": "datetime"
+    },
+    "notes": {
+      "type": "richtext"
+    },
+    "submittedBy": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "submissionWorkflow": {
+      "type": "enumeration",
+      "enum": [
+        "INTERNAL",
+        "CLIENT",
+        "INTERVIEW",
+        "OFFER"
+      ]
+    },
+    "submissionStatus": {
+      "type": "enumeration",
+      "enum": [
+        "ACCEPTED",
+        "REVIEW",
+        "REJECTED"
+      ]
+    },
+    "submissionRate": {
+      "type": "string"
+    },
+    "currency": {
+      "model": "currency"
+    },
+    "pay_period": {
+      "model": "pay-period"
+    },
+    "submittedResumeStatus": {
+      "type": "enumeration",
+      "enum": [
+        "VENDOR",
+        "CLIENT",
+        "FINAL"
+      ]
+    },
+    "submission_notes": {
+      "via": "submission_note",
+      "collection": "submission-note"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/industries-2-s",
+      "handler": "industries2.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/industries-2-s/count",
+      "handler": "industries2.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/industries-2-s/:id",
+      "handler": "industries2.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/industries-2-s",
+      "handler": "industries2.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/industries-2-s/:id",
+      "handler": "industries2.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/industries-2-s/:id",
+      "handler": "industries2.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

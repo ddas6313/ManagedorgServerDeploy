@@ -1,0 +1,84 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/individuals",
+      "handler": "individual.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/individuals/count",
+      "handler": "individual.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/individuals/:id",
+      "handler": "individual.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/individuals/delete_member",
+      "handler": "individual.delete_member",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/individuals/add_member",
+      "handler": "individual.add_member",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/individuals/add_individual",
+      "handler": "individual.add_individual",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/individuals/update_member",
+      "handler": "individual.update_member",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/individuals",
+      "handler": "individual.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/individuals/:id",
+      "handler": "individual.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/individuals/:id",
+      "handler": "individual.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

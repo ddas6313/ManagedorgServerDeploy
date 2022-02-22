@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submission_notes",
+  "info": {
+    "name": "submissionNote"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "notes": {
+      "type": "string"
+    },
+    "submission_note": {
+      "via": "submission_notes",
+      "model": "submission"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,101 @@
+name: Deploy app to EKS
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  EKS_CLUSTER: DeploymentTest
+  # EKS_CLUSTER2: QA
+  # EKS_CLUSTER3: cat
+  EKS_REGION: us-east-1
+
+jobs:
+  job1:
+    name: Setup and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # AWS Credentials
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.EKS_REGION }}
+
+      # Get the EKS credentials so we can deploy to the cluster
+      - run: |-
+          aws eks --region $EKS_REGION update-kubeconfig --name $EKS_CLUSTER
+
+      # Login to Jfrog
+      - name: Jfrog login
+        env:
+          JFROG_USER: ${{ secrets.JFROG_USER }}
+          JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
+        run: |
+          docker login sreyo.jfrog.io -u $JFROG_USER -p $JFROG_PASSWORD
+          kubectl delete secret jfrog-secret --ignore-not-found 
+          kubectl create secret generic jfrog-secret --from-file=.dockerconfigjson=/home/runner/.docker/config.json  --type=kubernetes.io/dockerconfigjson
+
+      # Deploy dockorized app image to the GKE cluster
+      - name: Deploy Admin Strapi instance
+        run: |-
+          kubectl apply -f admin.yaml
+          kubectl wait --timeout=120s --for=condition=ready pod -l app=admin
+          kubectl rollout restart deploy admin-deployment
+          kubectl rollout status deployment admin-deployment
+
+      #deploy gateway and virtual services
+      - name: Deploy gateway
+        run: |-
+          kubectl apply -f gateway.yaml
+          kubectl get svc -l=istio=ingressgateway -n istio-system
+          kubectl apply -f devvs-admin.yaml
+
+  job2:
+    needs: job1
+    name: Create subdomain in Cloudflare
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # AWS Credentials
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.EKS_REGION }}
+
+      # Get the EKS credentials so we can deploy to the cluster
+      - run: |-
+          aws eks --region $EKS_REGION update-kubeconfig --name $EKS_CLUSTER
+
+      - name: Update CloudFlare DNS with Cluster IP
+        run: |-
+          # purge any existing records for our GCP subdomain.
+          existing_records=( $(curl -X GET "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_DNS_ZONE }}/dns_records?type=CNAME&name=dev.managedorg.io" \
+             -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
+             -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
+             -H "Content-Type: application/json"   | jq -r '.result[].id') )
+          for record in ${existing_records[@]}; do
+            curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_DNS_ZONE }}/dns_records/${record}" \
+               -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
+              -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
+               -H "Content-Type: application/json"
+          done
+
+          # Create new record with latest cluster IP.
+          CLUSTER_HOSTNAME=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_DNS_ZONE }}/dns_records" \
+             -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
+             -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
+             -H "Content-Type: application/json" \
+             --data '{"type":"CNAME","name":"dev","content":"'${CLUSTER_HOSTNAME}'","ttl":120,"priority":10,"proxied":true}'
+
+ 

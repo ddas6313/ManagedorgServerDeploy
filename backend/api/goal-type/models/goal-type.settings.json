@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "goal_types",
+  "info": {
+    "name": "Goal Type"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Product": {
+      "type": "string"
+    },
+    "Quantity": {
+      "type": "integer"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "IsActive": {
+      "type": "boolean"
+    }
+  }
+}

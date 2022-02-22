@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/employee-tests",
+      "handler": "employee-test.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/employee-tests/count",
+      "handler": "employee-test.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/employee-tests/:id",
+      "handler": "employee-test.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/employee-tests",
+      "handler": "employee-test.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/employee-tests/:id",
+      "handler": "employee-test.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/employee-tests/:id",
+      "handler": "employee-test.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

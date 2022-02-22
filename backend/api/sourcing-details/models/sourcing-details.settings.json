@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sourcing_details",
+  "info": {
+    "name": "sourcingDetails",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "candidate_profile": {
+      "model": "candidate-profile",
+      "via": "sourcing_details"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "status": {
+      "via": "sourcing_details",
+      "model": "status"
+    },
+    "createdBy": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "isApproved": {
+      "type": "boolean"
+    },
+    "currentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "APPLICANT",
+        "PIPELINE",
+        "RECRUITING",
+        "SUBMISSION",
+        "CANCELLED",
+        "REJECTED",
+        "APPROVED"
+      ],
+      "default": "APPLICANT"
+    },
+    "requirement": {
+      "via": "sourcing_details",
+      "model": "employment-terms"
+    }
+  }
+}
