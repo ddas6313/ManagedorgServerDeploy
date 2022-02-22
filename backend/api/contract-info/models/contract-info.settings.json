@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contract_infos",
+  "info": {
+    "name": "Contract_info"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Start_date": {
+      "type": "date"
+    },
+    "End_date": {
+      "type": "date"
+    },
+    "title": {
+      "type": "string"
+    },
+    "name": {
+      "model": "names"
+    }
+  }
+}

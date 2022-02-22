@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "supplier_onboardings",
+  "info": {
+    "name": "Supplier_Onboarding",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Supplier_Name": {
+      "model": "names"
+    },
+    "Supplier_Address": {
+      "model": "address"
+    },
+    "MSA_Uploads": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "Supplier_Identification_Number": {
+      "type": "string"
+    },
+    "Supplier_Job_Title": {
+      "type": "string"
+    },
+    "Supplier_Phone": {
+      "model": "phone"
+    },
+    "Supplier_Contact_Name": {
+      "model": "names"
+    },
+    "Supplier_Email": {
+      "model": "email"
+    },
+    "Supplier_Fax": {
+      "model": "phone-type"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "campaigns",
+  "info": {
+    "name": "Campaign",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Campaign_Name": {
+      "type": "string"
+    },
+    "Campaign_Description": {
+      "type": "string"
+    },
+    "campaign_goals": {
+      "collection": "campaign-goal"
+    },
+    "Start_Date": {
+      "type": "date"
+    },
+    "End_Date": {
+      "type": "date"
+    },
+    "organization": {
+      "model": "organization"
+    },
+    "Parent_ID": {
+      "type": "string"
+    },
+    "Shipping_Adress_ID": {
+      "model": "address"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}

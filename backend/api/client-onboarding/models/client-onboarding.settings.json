@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "client_onboardings",
+  "info": {
+    "name": "Client",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Client_Name": {
+      "type": "string"
+    },
+    "Client_ID": {
+      "type": "string"
+    },
+    "Client_Address": {
+      "model": "address"
+    },
+    "client_phones": {
+      "collection": "phone"
+    },
+    "client_emails": {
+      "collection": "email"
+    },
+    "Client_Contact_Person": {
+      "type": "string"
+    },
+    "Contact_Title": {
+      "type": "string"
+    },
+    "Contact_Email": {
+      "model": "email"
+    },
+    "Contact_Phone": {
+      "model": "phone"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Industries2",
+  "info": {
+    "name": "Industries2"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "requirement": {
+      "model": "employment-terms"
+    }
+  }
+}

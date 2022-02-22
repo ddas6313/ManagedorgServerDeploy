@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "preferences",
+  "info": {
+    "name": "Preference",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "requirement": {
+      "model": "employment-terms"
+    },
+    "Zip_Code": {
+      "type": "string"
+    }
+  }
+}

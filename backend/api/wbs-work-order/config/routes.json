@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/wbs-work-orders",
+      "handler": "wbs-work-order.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/wbs-work-orders/count",
+      "handler": "wbs-work-order.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/wbs-work-orders/:id",
+      "handler": "wbs-work-order.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/wbs-work-orders",
+      "handler": "wbs-work-order.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/wbs-work-orders/:id",
+      "handler": "wbs-work-order.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/wbs-work-orders/:id",
+      "handler": "wbs-work-order.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

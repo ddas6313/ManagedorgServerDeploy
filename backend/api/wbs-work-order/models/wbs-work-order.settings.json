@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wbs_work_orders",
+  "info": {
+    "name": "WBS_Work_Order"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Internal_Work_Order_Number": {
+      "type": "string"
+    },
+    "wbs_purchase_orders": {
+      "collection": "pay-period"
+    }
+  }
+}

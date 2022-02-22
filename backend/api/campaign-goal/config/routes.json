@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/campaign-goals",
+      "handler": "campaign-goal.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-goals/count",
+      "handler": "campaign-goal.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-goals/:id",
+      "handler": "campaign-goal.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/campaign-goals",
+      "handler": "campaign-goal.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/campaign-goals/:id",
+      "handler": "campaign-goal.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/campaign-goals/:id",
+      "handler": "campaign-goal.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
